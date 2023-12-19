@@ -41,7 +41,7 @@ class ToDoListApplication:
         while True:
             command = input("command: ")
             if command == "0":
-                print("exiting ToDoList")
+                print("exiting ToDoList...")
                 break
             elif command == "1":
                 todo = input("Please input a ToDo: ")
