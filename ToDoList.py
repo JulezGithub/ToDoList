@@ -2,19 +2,29 @@ class FileHandler:
     def __init__(self):
         pass
 
-class ToDoList:
-    def __init__(self):
-        self.todolist = []
-
+    def write_entry(self, todo, due_date):
+        with open ("ToDo.txt", "a") as f:
+            f.write(f"{todo};{due_date}\n")
 
 
 class Entry:
     def __init__(self):
-        pass
+        self.todo = ""
+        self.due_date = ""
+        self.todolist = FileHandler()
+
+    def add_todo(self, todo, due_date):
+        self.todo = todo
+        self.due_date = due_date
+        self.todolist.write_entry(todo, due_date)
+
 
 class ToDoListApplication:
     def __init__(self):
-        self.todo = ToDoList()
+        self.todo = Entry()
+
+    def add_entry(self, todo, due_date):
+        self.todo.add_todo(todo, due_date)    
 
     def help(self):
         print("Commands:")
@@ -28,15 +38,20 @@ class ToDoListApplication:
         self.help()
         while True:
             command = input("command: ")
-
             if command == "0":
                 print("exiting ToDoList")
                 break
             elif command == "1":
-                pass
+                todo = input("Please input a ToDo: ")
+                due_date = input("Due date: ")
+                self.add_entry(todo, due_date)
             elif command == "2":
                 pass
             elif command == "3":
                 pass
             elif command == "4":
-                pass     
+                pass   
+
+if __name__ == "__main__":
+    todolist = ToDoListApplication()
+    todolist.execute()
