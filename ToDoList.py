@@ -81,3 +81,4 @@ class ToDoListApplication:
 if __name__ == "__main__":
     todolist = ToDoListApplication()
     todolist.execute()
+    print("changed")
