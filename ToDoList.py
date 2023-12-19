@@ -15,28 +15,18 @@ class FileHandler:
                 due_date = parts[1]
                 print(f"{todo:<20}{due_date:<20}")        
 
-
-class Entry:
-    def __init__(self):
-        self.todo = ""
-        self.due_date = ""
-        self.todolist = FileHandler()
-
-    def add_todo(self, todo, due_date):
-        self.todo = todo
-        self.due_date = due_date
-        self.todolist.write_entry(todo, due_date)
-
-
 class ToDoListApplication:
     def __init__(self):
-        self.todo = Entry()
+        self.todo = FileHandler()
 
     def add_entry(self, todo, due_date):
-        self.todo.add_todo(todo, due_date)    
+        self.todo.write_entry(todo, due_date)    
 
     def show_entries(self):
-        FileHandler().read()
+        self.todo.read()
+
+    def mark_done(self):
+        done = input("What ToDo is done?")
 
     def help(self):
         print("Commands:")
@@ -60,7 +50,7 @@ class ToDoListApplication:
             elif command == "2":
                 self.show_entries()
             elif command == "3":
-                pass
+                self.mark_done()
             elif command == "4":
                 pass   
 
