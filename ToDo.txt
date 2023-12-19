@@ -1,2 +1,1 @@
-cleaning;20.12.2023
-washing;21.12.2023
+washing;321

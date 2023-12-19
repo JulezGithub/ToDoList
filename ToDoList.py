@@ -10,10 +10,32 @@ class FileHandler:
         with open ("ToDo.txt") as f:
             print(f"{"ToDo:":<20}{"Due Date":<10}")
             for line in f:
+                line = line.strip()
                 parts = line.split(";")
                 todo = parts[0]
                 due_date = parts[1]
-                print(f"{todo:<20}{due_date:<20}")        
+                print(f"{todo:<20}{due_date:<20}")    
+
+    def mark_done(self, done):
+        all_entries = []
+        with open ("ToDo.txt") as f:
+            for line in f:
+                parts = line.split(";")
+                all_entries.append([parts[0], parts[1].strip()])
+        for entry in all_entries:
+            if done in entry:
+                all_entries.remove(entry)
+                print(all_entries)
+        with open("ToDo.txt", "w") as f:
+            pass
+        for entry in all_entries:
+            self.write_entry(entry[0], entry[1]) 
+
+    def clear(self):
+        with open("ToDo.txt", "w") as f:
+            pass
+
+
 
 class ToDoListApplication:
     def __init__(self):
@@ -26,8 +48,10 @@ class ToDoListApplication:
         self.todo.read()
 
     def mark_done(self):
-        done = input("What ToDo is done?")
-
+        done = input("What ToDo is done?: ")
+        self.todo.mark_done(done)
+    def clear(self):
+        self.todo.clear()
     def help(self):
         print("Commands:")
         print("0 - exit")
@@ -52,7 +76,7 @@ class ToDoListApplication:
             elif command == "3":
                 self.mark_done()
             elif command == "4":
-                pass   
+                self.clear()
 
 if __name__ == "__main__":
     todolist = ToDoListApplication()
