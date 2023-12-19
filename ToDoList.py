@@ -6,6 +6,15 @@ class FileHandler:
         with open ("ToDo.txt", "a") as f:
             f.write(f"{todo};{due_date}\n")
 
+    def read(self):
+        with open ("ToDo.txt") as f:
+            print(f"{"ToDo:":<20}{"Due Date":<10}")
+            for line in f:
+                parts = line.split(";")
+                todo = parts[0]
+                due_date = parts[1]
+                print(f"{todo:<20}{due_date:<20}")        
+
 
 class Entry:
     def __init__(self):
@@ -25,6 +34,9 @@ class ToDoListApplication:
 
     def add_entry(self, todo, due_date):
         self.todo.add_todo(todo, due_date)    
+
+    def show_entries(self):
+        FileHandler().read()
 
     def help(self):
         print("Commands:")
@@ -46,7 +58,7 @@ class ToDoListApplication:
                 due_date = input("Due date: ")
                 self.add_entry(todo, due_date)
             elif command == "2":
-                pass
+                self.show_entries()
             elif command == "3":
                 pass
             elif command == "4":
